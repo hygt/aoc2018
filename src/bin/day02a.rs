@@ -16,7 +16,7 @@ fn count(lines: &Vec<&str>, i: u32) -> u32 {
             for c in line.chars() {
                 *map.entry(c).or_insert(0) += 1;
             }
-            let found = map.iter().find(|(_k, &v)| v == i).is_some();
+            let found = map.iter().any(|(_k, &v)| v == i);
             map.clear();
             found
         })
