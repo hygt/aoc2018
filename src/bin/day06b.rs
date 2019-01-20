@@ -25,7 +25,6 @@ fn main() {
         .map(|line| {
             let tokens: Vec<i32> = line
                 .split(", ")
-                .into_iter()
                 .map(|i| i.parse::<i32>().unwrap())
                 .collect();
             let x = tokens[0];

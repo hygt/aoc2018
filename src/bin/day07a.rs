@@ -17,8 +17,7 @@ fn main() {
 
     for line in lines {
         let tokens: Vec<char> = line
-            .split(" ")
-            .into_iter()
+            .split_whitespace()
             .map(|c| char::from_str(c).unwrap())
             .collect();
         let from = tokens[0];

@@ -17,8 +17,7 @@ fn main() {
 
     for line in lines {
         let tokens: Vec<char> = line
-            .split(" ")
-            .into_iter()
+            .split_whitespace()
             .map(|c| char::from_str(c).unwrap())
             .collect();
         let from = tokens[0];
@@ -60,7 +59,6 @@ fn topo_sort(graph: &HashMap<char, Vertex>) -> i32 {
         tick += 1;
         for (c, t) in pipeline.clone() {
             if t == tick {
-                println!("Node: {} tick: {}", c, tick);
                 visited.insert(c);
                 pipeline.remove(&c);
 
