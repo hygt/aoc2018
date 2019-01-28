@@ -8,4 +8,5 @@ bit-set = "0.5.0"
 edit-distance = "2.0.0"
 regex = "1"
 chrono = "0.4"
+linked-list = "0.0.3"
 
