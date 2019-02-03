@@ -32,37 +32,37 @@ fn main() {
 
     let mut seconds = -1;
     let mut bounding_box: i64 = 15_000_000_000; // initial input is smaller than 110,000²
-    loop {
+    let mut area: i64 = 0;
+    while area <= bounding_box {
         let left = points.iter().min_by_key(|p| p.x).unwrap().x;
         let right = points.iter().max_by_key(|p| p.x).unwrap().x;
         let bottom = points.iter().min_by_key(|p| p.y).unwrap().y;
         let top = points.iter().max_by_key(|p| p.y).unwrap().y;
         let width = right - left;
         let height = top - bottom;
-        let area = width * height;
-        if area > bounding_box {
+        area = width * height;
+        if area < bounding_box {
+            for point in points.iter_mut() {
+                point.x += point.dx;
+                point.y += point.dy;
+            }
+            bounding_box = area;
+            seconds += 1;
+        } else {
             // undo the last step
             for point in points.iter_mut() {
                 point.x -= point.dx;
                 point.y -= point.dy;
             }
             let mut bg = vec![vec![' '; width as usize]; height as usize];
-            for point in points {
+            for point in points.iter() {
                 bg[(point.y - bottom) as usize][(point.x - left) as usize] = '#';
             }
             for row in bg {
                 let s: String = row.into_iter().collect();
                 println!("{}", s);
             }
-            break;
-        } else {
-            for point in points.iter_mut() {
-                point.x += point.dx;
-                point.y += point.dy;
-            }
         }
-        bounding_box = area;
-        seconds += 1;
     }
     println!("seconds: {}", seconds);
 }
