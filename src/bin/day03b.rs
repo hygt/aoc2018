@@ -13,9 +13,7 @@ fn main() {
     let re = Regex::new(r"^#\d+ @ (\d+),(\d+): (\d+)x(\d+)$").unwrap();
     let mut ids = vec![false; MAX_ID];
     let mut board = vec![vec![0u32; DIM]; DIM];
-    let mut id: u32 = 0;
-    for &line in lines.iter() {
-        id += 1;
+    for (id, line) in lines.iter().enumerate() {
         let groups = re.captures(line).unwrap();
         let &x = &groups[1].parse::<usize>().unwrap();
         let &y = &groups[2].parse::<usize>().unwrap();
@@ -25,9 +23,9 @@ fn main() {
             for j in y..(y + h) {
                 let cell = board[i][j];
                 if cell == 0 {
-                    board[i][j] = id;
+                    board[i][j] = id as u32;
                 } else {
-                    ids[(id - 1) as usize] = true;
+                    ids[id - 1] = true;
                     ids[(cell - 1) as usize] = true;
                 }
             }

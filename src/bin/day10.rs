@@ -15,7 +15,6 @@ fn main() {
 
     let mut points: Vec<Point> = input
         .lines()
-        .into_iter()
         .map(|line| {
             let tokens: Vec<i64> = line
                 .split_whitespace()

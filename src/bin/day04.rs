@@ -23,7 +23,6 @@ fn main() {
     let input = fs::read_to_string("resources/day04.txt").expect("Couldn't read file");
     let mut actions: Vec<(DateTime<FixedOffset>, Action)> = input
         .lines()
-        .into_iter()
         .map(|line| {
             let time = line.get(..DELIM).unwrap();
             let dt = DateTime::parse_from_rfc3339(time).unwrap();
@@ -43,10 +42,9 @@ fn main() {
     actions.sort_unstable_by_key(|(dt, _)| dt.timestamp());
 
     let mut guards: HashMap<u32, Vec<u32>> = HashMap::new();
-    let mut iterator = actions.iter();
     let mut guard_id: u32 = 0;
     let mut from: u32 = 0;
-    while let Some((_, ac)) = iterator.next() {
+    for (_, ac) in actions.iter() {
         match ac {
             Action::BeginShift(id) => guard_id = *id,
             Action::FallAsleep(min) => from = *min,

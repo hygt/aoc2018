@@ -15,8 +15,8 @@ fn main() {
     println!("First frequency reached twice: {}", sum);
 }
 
-fn find_freq(sum: &mut i32, set: &mut HashSet<i32>, freqs: &Vec<i32>) {
-    let freq = freqs.iter().find(|&&x| {
+fn find_freq(sum: &mut i32, set: &mut HashSet<i32>, freqs: &[i32]) {
+    let freq = freqs.iter().find(|&x| {
         *sum += x;
         if set.contains(sum) {
             true

@@ -13,7 +13,7 @@ fn main() {
     let input = fs::read_to_string("resources/day07.txt").expect("Couldn't read file");
 
     let mut graph: HashMap<char, Vertex> = HashMap::new();
-    let lines: Vec<&str> = input.lines().into_iter().collect();
+    let lines: Vec<&str> = input.lines().collect();
 
     for line in lines {
         let tokens: Vec<char> = line

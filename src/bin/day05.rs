@@ -3,7 +3,7 @@ use std::str::Chars;
 
 fn main() {
     let input = fs::read_to_string("resources/day05.txt").expect("Couldn't read file");
-    let ref chars = input.chars();
+    let chars = &input.chars();
 
     // part one
     println!("Final size: {}", process(chars, None));

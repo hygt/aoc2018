@@ -28,7 +28,7 @@ struct Square {
     total: i32,
 }
 
-fn find_square(grid: &Vec<Vec<i32>>, size: usize) -> Square {
+fn find_square(grid: &[Vec<i32>], size: usize) -> Square {
     let boundary = 301 - size;
     let mut squares = vec![vec![0; boundary]; boundary];
     for x in 0usize..boundary {

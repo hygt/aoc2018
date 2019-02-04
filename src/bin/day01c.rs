@@ -34,7 +34,7 @@ fn main() {
 }
 
 fn enc(i: i32) -> usize {
-    let mut offset = i32::max_value() as i64;
-    offset += i as i64;
+    let mut offset = i64::from(i32::max_value());
+    offset += i64::from(i);
     offset as usize
 }

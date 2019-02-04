@@ -8,7 +8,7 @@ fn main() {
     println!("Checksum: {}", count(&lines, 2) * count(&lines, 3));
 }
 
-fn count(lines: &Vec<&str>, i: u32) -> u32 {
+fn count(lines: &[&str], i: u32) -> u32 {
     let mut map: HashMap<char, u32> = HashMap::new();
     lines
         .iter()

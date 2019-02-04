@@ -42,7 +42,7 @@ fn main() {
                     j -= 1;
                     nums[j] -= 1;
                     tree.entry(j as i32)
-                        .or_insert(Node::new())
+                        .or_insert_with(Node::new)
                         .children
                         .push(child_pos);
                 }
@@ -63,25 +63,25 @@ fn main() {
                     nums[i] = -1;
                     i += 1;
                 }
-                tree.entry(child_pos).or_insert(Node::new()).meta = slice;
+                tree.entry(child_pos).or_insert_with(Node::new).meta = slice;
             } else {
                 i += 1;
             }
         }
     }
 
-    println!("{}", recurse(&0, &tree));
+    println!("{}", recurse(0, &tree));
 }
 
-fn recurse(id: &i32, tree: &HashMap<i32, Node>) -> i32 {
-    let node = tree.get(id).unwrap();
-    if node.children.len() == 0 {
+fn recurse(id: i32, tree: &HashMap<i32, Node>) -> i32 {
+    let node = tree.get(&id).unwrap();
+    if node.children.is_empty() {
         node.meta.iter().sum()
     } else {
         let mut sum = 0;
         for &i in &node.meta {
             if let Some(child) = node.children.get((i - 1) as usize) {
-                sum += recurse(child, tree);
+                sum += recurse(*child, tree);
             }
         }
         sum

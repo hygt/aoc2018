@@ -4,12 +4,12 @@ extern crate linked_list;
 use linked_list::*;
 
 const PLAYERS: usize = 413;
-const MARBLES: u32 = 7108200;
+const MARBLES: u32 = 7_108_200;
 
 fn main() {
     let mut marbles: LinkedList<u32> = LinkedList::new();
     marbles.push_back(0);
-    let ref mut cursor = marbles.cursor();
+    let cursor = &mut marbles.cursor();
     let mut players = vec![0u32; PLAYERS];
 
     let mut p = 0;

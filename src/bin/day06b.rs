@@ -21,7 +21,6 @@ fn main() {
 
     let points: Vec<Point> = input
         .lines()
-        .into_iter()
         .map(|line| {
             let tokens: Vec<i32> = line
                 .split(", ")
@@ -51,7 +50,7 @@ fn main() {
 }
 
 /// Returns the sum of distances between this position and all points.
-fn distances_sum(x: i32, y: i32, points: &Vec<Point>) -> i32 {
+fn distances_sum(x: i32, y: i32, points: &[Point]) -> i32 {
     points
         .iter()
         .fold(0, |acc, p| acc + (p.x - x).abs() + (p.y - y).abs())

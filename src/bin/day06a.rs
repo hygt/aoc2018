@@ -22,7 +22,6 @@ fn main() {
 
     let points: Vec<Point> = input
         .lines()
-        .into_iter()
         .map(|line| {
             let tokens: Vec<i32> = line
                 .split(", ")
@@ -82,7 +81,7 @@ fn main() {
 }
 
 /// Returns the id of the closest Point or -1 if there are more than one.
-fn shortest_distance(x: i32, y: i32, points: &Vec<Point>) -> i8 {
+fn shortest_distance(x: i32, y: i32, points: &[Point]) -> i8 {
     let mut set: HashSet<&Point> = HashSet::new();
     let mut min = DIM;
     for p in points {
